@@ -20,16 +20,11 @@
 
     <section class="info-list" aria-label="연락처 정보">
       <div class="info-item">
-  <div class="icon">✉</div>
-
-  <div
-    class="value email-copy"
-    data-email="hello@example.com"
-  >
-    hello@example.com
-  </div>
-
-</div>
+        <div class="icon">✉</div>
+        <div class="value email-copy" data-email="hello@example.com">
+          hello@example.com
+        </div>
+      </div>
 
       <div class="info-item">
         <div class="icon">☎</div>
@@ -38,8 +33,17 @@
     </section>
 
     <div class="actions">
-      <a class="btn primary" href="mailto:hello@example.com">이메일 보내기</a>
-      <a class="btn secondary" href="tel:01012345678">전화하기</a>
+      <button
+        type="button"
+        class="btn primary copy-email-btn"
+        data-email="hello@example.com"
+      >
+        이메일 보내기
+      </button>
+
+      <a class="btn secondary" href="tel:01012345678">
+        전화하기
+      </a>
     </div>
   </main>
 </body>
