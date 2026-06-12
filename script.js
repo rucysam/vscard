@@ -18,33 +18,43 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const valueItems = document.querySelectorAll(".value");
+  const emailElement = document.querySelector(".email-copy");
 
-  valueItems.forEach((item) => {
-    const text = item.textContent.trim();
-    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text);
+  if (emailElement) {
+    emailElement.style.cursor = "pointer";
+    emailElement.title = "클릭하면 이메일이 복사됩니다.";
 
-    if (!isEmail) return;
+    emailElement.addEventListener("click", async () => {
+      const email =
+        emailElement.dataset.email || emailElement.textContent.trim();
 
-    item.style.cursor = "pointer";
-    item.title = "클릭하면 이메일이 복사됩니다.";
-
-    item.addEventListener("click", async () => {
       try {
-        await navigator.clipboard.writeText(text);
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(email);
+        } else {
+          const textarea = document.createElement("textarea");
+          textarea.value = email;
+          textarea.style.position = "fixed";
+          textarea.style.left = "-9999px";
+          document.body.appendChild(textarea);
+          textarea.focus();
+          textarea.select();
+          document.execCommand("copy");
+          document.body.removeChild(textarea);
+        }
 
-        const originalText = item.textContent;
-        item.textContent = "이메일이 복사되었습니다.";
+        const originalText = emailElement.textContent;
+        emailElement.textContent = "이메일이 복사되었습니다.";
 
         setTimeout(() => {
-          item.textContent = originalText;
+          emailElement.textContent = originalText;
         }, 1500);
       } catch (error) {
-        console.error("클립보드 복사 실패:", error);
-        alert("이메일 복사에 실패했습니다. 브라우저 권한을 확인해주세요.");
+        console.error("이메일 복사 실패:", error);
+        alert("이메일 복사에 실패했습니다.");
       }
     });
-  });
+  }
 
   console.log("웹 명함 카드 기능이 적용되었습니다.");
 });
