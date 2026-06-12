@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>웹 명함 카드</title>
+
+  <link rel="stylesheet" href="./style.css" />
+  <script src="./script.js" defer></script>
+</head>
+
+<body>
+  <main class="business-card">
+    <div class="profile-image">
+      <img src="./cat1.jpg" alt="이현경 프로필 이미지" />
+    </div>
+
+    <h1 class="name">이현경</h1>
+    <p class="job">Full Stack Developer</p>
+
+    <section class="info-list" aria-label="연락처 정보">
+      <div class="info-item">
+        <div class="icon">✉</div>
+        <div class="value">hello@example.com</div>
+      </div>
+
+      <div class="info-item">
+        <div class="icon">☎</div>
+        <div class="value">010-1234-5678</div>
+      </div>
+    </section>
+
+    <div class="actions">
+      <a class="btn primary" href="mailto:hello@example.com">이메일 보내기</a>
+      <a class="btn secondary" href="tel:01012345678">전화하기</a>
+    </div>
+  </main>
+</body>
+</html>
